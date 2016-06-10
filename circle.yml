@@ -14,7 +14,6 @@ test:
     - cd spark-pubsub && mvn package verify site site:stage 
   post:
     - cp spark-pubsub/target/*.jar $CIRCLE_ARTIFACTS/
-    - cp -ra target/staging $CIRCLE_ARTIFACTS/
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
 deployment:
