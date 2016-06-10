@@ -24,4 +24,3 @@ deployment:
     commands:
       - env
       - cd spark-pubsub && mvn deploy -DskipTests
-          pwd: spark-pubsub
