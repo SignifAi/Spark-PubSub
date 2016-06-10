@@ -6,14 +6,14 @@ machine:
 
 dependencies:
   override:
-    - cd spark-pubsub && mvn install -DskipTests
+    - cd java && mvn install -DskipTests
 
 test:
   override:
     - env
-    - cd spark-pubsub && mvn package verify site site:stage 
+    - cd java && mvn package verify site site:stage 
   post:
-    - cp spark-pubsub/target/*.jar $CIRCLE_ARTIFACTS/
+    - cp java/target/*.jar $CIRCLE_ARTIFACTS/
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
 deployment:
@@ -22,4 +22,4 @@ deployment:
     owner: SignifAi
     commands:
       - env
-      - cd spark-pubsub && mvn deploy -DskipTests
+      - cd java && mvn deploy -DskipTests
