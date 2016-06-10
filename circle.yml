@@ -6,14 +6,12 @@ machine:
 
 dependencies:
   override:
-    - mvn install -DskipTests
-        pwd: spark-pubsub
+    - cd spark-pubsub && mvn install -DskipTests
 
 test:
   override:
     - env
-    - mvn package verify coveralls:report site site:stage -Pcibuild -Dcoverall.repository.token=${COVERALLS_REPO_TOKEN}    
-        pwd: spark-pubsub
+    - cd spark-pubsub && mvn package verify coveralls:report site site:stage -Pcibuild -Dcoverall.repository.token=${COVERALLS_REPO_TOKEN}    
   post:
     - cp spark-pubsub/target/*.jar $CIRCLE_ARTIFACTS/
     - cp -ra target/staging $CIRCLE_ARTIFACTS/
@@ -25,5 +23,5 @@ deployment:
     owner: SignifAi
     commands:
       - env
-      - mvn deploy -DskipTests
+      - cd spark-pubsub && mvn deploy -DskipTests
           pwd: spark-pubsub
