@@ -1,0 +1,29 @@
+machine:
+  java:
+    version: oraclejdk8
+  services:
+    - docker
+
+dependencies:
+  override:
+    - mvn install -DskipTests
+        pwd: spark-pubsub
+
+test:
+  override:
+    - env
+    - mvn package verify coveralls:report site site:stage -Pcibuild -Dcoverall.repository.token=${COVERALLS_REPO_TOKEN}    
+        pwd: spark-pubsub
+  post:
+    - cp spark-pubsub/target/*.jar $CIRCLE_ARTIFACTS/
+    - cp -ra target/staging $CIRCLE_ARTIFACTS/
+    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+    - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+deployment:
+  master:
+    branch: master
+    owner: SignifAi
+    commands:
+      - env
+      - mvn deploy -DskipTests
+        pwd: spark-pubsub

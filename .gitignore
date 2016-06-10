@@ -1,0 +1,10 @@
+.project
+.settings/
+.classpath
+.*.swp
+.*.swo
+target/
+output.log
+metastore_db/
+derby.log
+.extract/
