@@ -14,7 +14,9 @@ test:
     - cd java && mvn package verify site site:stage
     - cd python && python setup.py bdist_egg 
   post:
-    - cp java/target/*.jar $CIRCLE_ARTIFACTS/
+    - mkdir -p ${CIRCLE_ARTIFACTS}/{java,python}
+    - cp java/target/*.jar $CIRCLE_ARTIFACTS/java
+    - cp python/dist/* $CIRCLE_ARTIFACTS/python
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
 deployment:
