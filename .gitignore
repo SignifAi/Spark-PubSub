@@ -8,3 +8,7 @@ output.log
 metastore_db/
 derby.log
 .extract/
+build/
+dist/
+*.egg-info/
+dependency-reduced-pom.xml

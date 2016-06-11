@@ -11,7 +11,8 @@ dependencies:
 test:
   override:
     - env
-    - cd java && mvn package verify site site:stage 
+    - cd java && mvn package verify site site:stage
+    - cd python && python setup.py bdist_egg 
   post:
     - cp java/target/*.jar $CIRCLE_ARTIFACTS/
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
