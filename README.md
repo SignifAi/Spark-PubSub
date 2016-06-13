@@ -4,7 +4,9 @@ Spark Pubsub Connector
 # Roadmap
 
 [] More documentation
+
 [] Add tests
+
 [X] Python wrapper
 
 
