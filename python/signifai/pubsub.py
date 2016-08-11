@@ -28,6 +28,6 @@ class PubsubUtils:
         return stream
 
     @staticmethod
-    def createStream(ssc, subscription, batchSize, bodyDecoder=utf8_decoder):
-        jstream = ssc._sc._jvm.io.signifai.pubsub_spark.receiver.PubsubReceiverInputDStream(ssc._jssc, subscription, batchSize)
+    def createStream(ssc, subscription, batchSize, decodeData, bodyDecoder=utf8_decoder):
+        jstream = ssc._sc._jvm.io.signifai.pubsub_spark.receiver.PubsubReceiverInputDStream(ssc._jssc, subscription, batchSize, decodeData)
         return PubsubUtils._toPythonDStream(ssc, jstream, bodyDecoder)

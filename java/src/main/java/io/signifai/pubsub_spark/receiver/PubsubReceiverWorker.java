@@ -16,11 +16,14 @@ import com.google.api.services.pubsub.model.ReceivedMessage;
 class PubsubReceiverWorker extends Thread {
 	private final PubsubReceiver pubsubReceiver;
 	private final Pubsub pubsubClient;
+	private final boolean decodeData;
 
-	public PubsubReceiverWorker(final PubsubReceiver _pubsubReceiver, final String _name, final Pubsub _pubsubClient) {
+	public PubsubReceiverWorker(final PubsubReceiver _pubsubReceiver, final String _name, final Pubsub _pubsubClient,
+			final boolean _decodeData) {
 		super(_name);
 		this.pubsubReceiver = _pubsubReceiver;
 		this.pubsubClient = _pubsubClient;
+		this.decodeData = _decodeData;
 	}
 
 	@Override
@@ -43,7 +46,11 @@ class PubsubReceiverWorker extends Thread {
 						final PubsubMessage pubsubMessage = receivedMessage.getMessage();
 
 						if (pubsubMessage != null) {
-							messages.add(new String(pubsubMessage.decodeData(), StandardCharsets.UTF_8));
+							if (decodeData) {
+								messages.add(new String(pubsubMessage.decodeData(), StandardCharsets.UTF_8));
+							} else {
+								messages.add(pubsubMessage.getData());
+							}
 						}
 						ackIds.add(receivedMessage.getAckId());
 					}
@@ -51,7 +58,7 @@ class PubsubReceiverWorker extends Thread {
 					if (CollectionUtils.isNotEmpty(messages)) {
 						pubsubReceiver.store(messages.iterator());
 					}
-					
+
 					final AcknowledgeRequest ackRequest = new AcknowledgeRequest().setAckIds(ackIds);
 					pubsubClient.projects().subscriptions().acknowledge(pubsubReceiver.getSubscription(), ackRequest)
 							.execute();

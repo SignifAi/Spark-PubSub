@@ -15,11 +15,13 @@ public class PubsubReceiver extends Receiver<String> {
 
 	private final String subscription;
 	private final int batchSize;
+	private final boolean decodeData;
 
-	public PubsubReceiver(final String _subscription, final Integer _batchSize) {
+	public PubsubReceiver(final String _subscription, final Integer _batchSize, final boolean _decodeData) {
 		super(StorageLevel.MEMORY_AND_DISK_2());
 		this.subscription = _subscription;
 		this.batchSize = _batchSize != null ? _batchSize : DEFAULT_BATCH_SIZE;
+		this.decodeData = _decodeData;
 	}
 
 	@Override
@@ -27,7 +29,7 @@ public class PubsubReceiver extends Receiver<String> {
 		try {
 			final Pubsub pubsubClient = PubsubHelper.createPubsubClient();
 
-			final Thread thread = new PubsubReceiverWorker(this, "Pubsub - " + subscription, pubsubClient);
+			final Thread thread = new PubsubReceiverWorker(this, "Pubsub - " + subscription, pubsubClient, decodeData);
 			thread.start();
 		} catch (Exception e) {
 			this.stop("Could not start pubsub listener for subscription " + subscription, e);

@@ -16,13 +16,12 @@ public class PubsubReceiverInputDStream extends JavaReceiverInputDStream<String>
 	}
 
 	public PubsubReceiverInputDStream(final JavaStreamingContext _jssc, final String _subscription,
-			final Integer _batchSize) {
-		super(new PubsubInputDStream(_jssc, _subscription, _batchSize), STRING_CLASS_TAG);
+			final Integer _batchSize, final boolean _decodeData) {
+		super(new PubsubInputDStream(_jssc, _subscription, _batchSize, _decodeData), STRING_CLASS_TAG);
 	}
 
-	public PubsubReceiverInputDStream(final StreamingContext _ssc, final String _subscription,
-			final Integer _batchSize) {
-		super(new PubsubInputDStream(_ssc, _subscription, _batchSize), STRING_CLASS_TAG);
+	public PubsubReceiverInputDStream(final StreamingContext _ssc, final String _subscription, final Integer _batchSize,
+			final boolean _decodeData) {
+		super(new PubsubInputDStream(_ssc, _subscription, _batchSize, _decodeData), STRING_CLASS_TAG);
 	}
-
 }
