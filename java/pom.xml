@@ -1,3 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Copyright 2016 SignifAI, Inc.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -13,9 +29,24 @@
 	<inceptionYear>2016</inceptionYear>
 
 	<organization>
-		<name>Signifai</name>
-		<url>http://signifai.io</url>
+		<name>Signifai, Inc</name>
+		<url>https://signifai.io</url>
 	</organization>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Bruno Mahé</name>
+			<email>bruno@signifai.io</email>
+		</developer>
+	</developers>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -40,6 +71,7 @@
 		<maven.site.plugin>3.5.1</maven.site.plugin>
 		<maven.taglist.plugin>2.4</maven.taglist.plugin>
 		<maven.versions.plugin>2.2</maven.versions.plugin>
+		<apache.maven.rat.version>0.12</apache.maven.rat.version>
 
 		<spark.version>1.6.1</spark.version>
 		<scala.binary.version>2.10</scala.binary.version>
@@ -316,6 +348,12 @@
 								<aggregate>true</aggregate>
 							</configuration>
 						</plugin>
+									    <plugin>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <version>${apapache.maven.rat.version}</version>
+      </plugin>
+						
 					</reportPlugins>
 					<locales>en</locales>
 				</configuration>
