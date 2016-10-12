@@ -3,7 +3,7 @@ Spark Pubsub Connector
 
 # Introduction
 
-This project provides a Google Cloud Pubsub connector for Apache Spark Java and Python binding.
+This project enables Apache Spark streaming applications to consume messages from Google Pubsub from Java and Python.
 It is released under the Apache License v2.
 
 # How to build
