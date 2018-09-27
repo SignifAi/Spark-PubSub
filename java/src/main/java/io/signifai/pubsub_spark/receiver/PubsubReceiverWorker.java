@@ -49,9 +49,9 @@ class PubsubReceiverWorker extends Thread {
 
 				final PullRequest pullRequest = new PullRequest().setReturnImmediately(false)
 						.setMaxMessages(pubsubReceiver.getBatchSize());
-				PullResponse pullResponse;
-				pullResponse = pubsubClient.projects().subscriptions().pull(pubsubReceiver.getSubscription(), pullRequest)
-						.execute();
+				final PullResponse pullResponse = pubsubClient.projects().subscriptions()
+						.pull(pubsubReceiver.getSubscription(), pullRequest).execute();
+
 				final List<ReceivedMessage> receivedMessages = pullResponse.getReceivedMessages();
 
 				if (CollectionUtils.isNotEmpty(receivedMessages)) {

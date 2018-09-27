@@ -5,7 +5,7 @@
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
- 
+
      http://www.apache.org/licenses/LICENSE-2.0
  
   Unless required by applicable law or agreed to in writing, software
@@ -68,36 +68,29 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 
-		<maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
-		<maven.git.id.plugin.version>2.1.11</maven.git.id.plugin.version>
-		<maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
-		<maven.checkstyle.plugin>2.17</maven.checkstyle.plugin>
-		<maven.cobertura.plugin>2.7</maven.cobertura.plugin>
-		<maven.doxia.module.markdown.version>1.7</maven.doxia.module.markdown.version>
+		<maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
+		<maven.git.id.plugin.version>2.2.5</maven.git.id.plugin.version>
+		<maven.surefire.plugin.version>2.22.0</maven.surefire.plugin.version>
+		<maven.checkstyle.plugin>3.0.0</maven.checkstyle.plugin>
+		<maven.doxia.module.markdown.version>1.8</maven.doxia.module.markdown.version>
 		<maven.jacoco.version>0.7.6.201602180812</maven.jacoco.version>
-		<maven.javadoc.plugin>2.10.3</maven.javadoc.plugin>
+		<maven.javadoc.plugin>3.0.1</maven.javadoc.plugin>
 		<maven.jxr.plugin>2.5</maven.jxr.plugin>
 		<maven.pmd.plugin>3.6</maven.pmd.plugin>
 		<maven.project.info.reports.plugin>2.9</maven.project.info.reports.plugin>
+		<maven.shade.plugin.version>3.2.0</maven.shade.plugin.version>
 		<maven.site.plugin>3.5.1</maven.site.plugin>
 		<maven.taglist.plugin>2.4</maven.taglist.plugin>
 		<maven.versions.plugin>2.2</maven.versions.plugin>
 		<apache.maven.rat.version>0.12</apache.maven.rat.version>
 
-		<spark.version>1.6.1</spark.version>
-		<scala.binary.version>2.10</scala.binary.version>
-		<gcloud.pubsub.version>v1-rev9-1.21.0</gcloud.pubsub.version>
-		<jackson.databind.version>2.6.5</jackson.databind.version>
-		<apache.commons.lang3.version>3.4</apache.commons.lang3.version>
-		<apache.commons.collections4.version>4.1</apache.commons.collections4.version>
-		<apache.commons.configuration2.version>2.0</apache.commons.configuration2.version>
-		<apache.commons.beanutils.version>1.9.2</apache.commons.beanutils.version>
-		<apache.commons.pool2.version>2.4.2</apache.commons.pool2.version>
-		<jest.version>2.0.2</jest.version>
-		<elasticsearch.version>2.3.1</elasticsearch.version>
-		<joda.time.version>2.9.3</joda.time.version>
-		<log4j.version>2.5</log4j.version>
-		<javax.servlet.api.version>3.0.1</javax.servlet.api.version>
+		<spark.version>2.3.2</spark.version>
+		<scala.binary.version>2.11</scala.binary.version>
+		<gcloud.pubsub.version>v1-rev403-1.25.0</gcloud.pubsub.version>
+		<jackson.databind.version>2.9.7</jackson.databind.version>
+		<apache.commons.lang3.version>3.8.1</apache.commons.lang3.version>
+		<apache.commons.collections4.version>4.2</apache.commons.collections4.version>
+		<log4j.version>2.11.1</log4j.version>
 
 		<junit.version>4.12</junit.version>
 		<mockito.version>2.0.54-beta</mockito.version>
@@ -359,12 +352,11 @@
 								<aggregate>true</aggregate>
 							</configuration>
 						</plugin>
-									    <plugin>
-        <groupId>org.apache.rat</groupId>
-        <artifactId>apache-rat-plugin</artifactId>
-        <version>${apapache.maven.rat.version}</version>
-      </plugin>
-						
+						<plugin>
+							<groupId>org.apache.rat</groupId>
+							<artifactId>apache-rat-plugin</artifactId>
+							<version>${apapache.maven.rat.version}</version>
+						</plugin>
 					</reportPlugins>
 					<locales>en</locales>
 				</configuration>
@@ -379,7 +371,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.4.3</version>
+				<version>${maven.shade.plugin.version}</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -399,30 +391,6 @@
 		<plugins>
 		</plugins>
 	</reporting>
-
-	<profiles>
-		<profile>
-			<id>cibuild</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-				<property>
-					<name>cibuild</name>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.eluder.coveralls</groupId>
-						<artifactId>coveralls-maven-plugin</artifactId>
-						<version>4.1.0</version>
-						<configuration>
-							<repoToken>${coverall.repository.token}</repoToken>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 
 	<repositories>
 		<repository>

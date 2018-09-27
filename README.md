@@ -40,7 +40,7 @@ In order to use this _receiver_, you need to attach your jar.
 
 For instance, when using _spark-shell_:
 ```bash
-export SPARK_PUBSUB_JAR="~/projects/spark-pubsub/java/target/spark_pubsub-1.0-SNAPSHOT.jar"
+export SPARK_PUBSUB_JAR="~/projects/spark-pubsub/java/target/spark_pubsub-1.1-SNAPSHOT.jar"
 
 ${SPARK_HOME}/bin/spark-shell --jars ${SPARK_PUBSUB_JAR} --driver-class-path ${SPARK_PUBSUB_JAR}
 ```
@@ -56,9 +56,9 @@ val SUBSCRIPTION = "<My SUBSCRIPTION>"
 var ssc = new StreamingContext(sc,Seconds(5))
 var pubsubReceiver = new PubsubReceiver(SUBSCRIPTION, 10)
 val customReceiverStream = ssc.receiverStream(pubsubReceiver)
-customReceiverStream.foreach((x: RDD[String]) => println(x.count))
-customReceiverStream.foreach((x: RDD[String]) => println(x))
-customReceiverStream.foreach((x: RDD[String]) => x.foreach(println(_)))
+customReceiverStream.map(x => x).foreachRDD((x: RDD[String]) => println(x.count))
+customReceiverStream.map(x => x).foreachRDD((x: RDD[String]) => println(x))
+customReceiverStream.map(x => x).foreachRDD((x: RDD[String]) => x.take(10).foreach(println(_)))
 
 ssc.start
 ```
