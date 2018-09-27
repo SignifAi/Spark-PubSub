@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-   Copyright 2016 SignifAI, Inc.
+   Copyright 2016-2018 SignifAI, Inc.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -40,6 +40,18 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+
+	<issueManagement>
+		<url>https://github.com/SignifAi/Spark-PubSub/issues</url>
+		<system>GitHub</system>
+	</issueManagement>
+
+	<scm>
+		<url>https://github.com/SignifAi/Spark-PubSub</url>
+		<connection>scm:git:git://github.com/SignifAi/Spark-PubSub.git</connection>
+		<developerConnection>scm:git:git@github.com:SignifAi/Spark-PubSub.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
 
 	<developers>
 		<developer>
