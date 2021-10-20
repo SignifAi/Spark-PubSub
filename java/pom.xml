@@ -81,12 +81,13 @@
 		<maven.shade.plugin.version>3.2.0</maven.shade.plugin.version>
 		<maven.site.plugin>3.5.1</maven.site.plugin>
 		<maven.taglist.plugin>2.4</maven.taglist.plugin>
+		<maven.findbugs.plugin>4.4.2</maven.findbugs.plugin>
 		<maven.versions.plugin>2.2</maven.versions.plugin>
 		<apache.maven.rat.version>0.12</apache.maven.rat.version>
 
-		<spark.version>2.3.2</spark.version>
+		<spark.version>2.4.7</spark.version>
 		<scala.binary.version>2.11</scala.binary.version>
-		<gcloud.pubsub.version>v1-rev403-1.25.0</gcloud.pubsub.version>
+		<gcloud.pubsub.version>v1-rev452-1.25.0</gcloud.pubsub.version>
 		<jackson.databind.version>2.9.7</jackson.databind.version>
 		<apache.commons.lang3.version>3.8.1</apache.commons.lang3.version>
 		<apache.commons.collections4.version>4.2</apache.commons.collections4.version>
@@ -355,7 +356,7 @@
 						<plugin>
 							<groupId>org.apache.rat</groupId>
 							<artifactId>apache-rat-plugin</artifactId>
-							<version>${apapache.maven.rat.version}</version>
+							<version>${apache.maven.rat.version}</version>
 						</plugin>
 					</reportPlugins>
 					<locales>en</locales>
