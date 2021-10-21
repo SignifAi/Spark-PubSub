@@ -86,7 +86,7 @@
 		<apache.maven.rat.version>0.12</apache.maven.rat.version>
 
 		<spark.version>2.4.8</spark.version>
-		<scala.binary.version>2.11</scala.binary.version>
+		<scala.binary.version>2.12</scala.binary.version>
 		<gcloud.pubsub.version>v1-rev452-1.25.0</gcloud.pubsub.version>
 		<jackson.databind.version>2.9.7</jackson.databind.version>
 		<apache.commons.lang3.version>3.8.1</apache.commons.lang3.version>
