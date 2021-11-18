@@ -54,7 +54,7 @@ import org.apache.spark.rdd._
 val SUBSCRIPTION = "<My SUBSCRIPTION>"
 
 var ssc = new StreamingContext(sc,Seconds(5))
-var pubsubReceiver = new PubsubReceiver(SUBSCRIPTION, 10)
+var pubsubReceiver = new PubsubReceiver(SUBSCRIPTION, 10, true)
 val customReceiverStream = ssc.receiverStream(pubsubReceiver)
 customReceiverStream.map(x => x).foreachRDD((x: RDD[String]) => println(x.count))
 customReceiverStream.map(x => x).foreachRDD((x: RDD[String]) => println(x))
@@ -85,7 +85,7 @@ from signifai.pubsub import PubsubUtils
 SUBSCRIPTION = "<MY SUBSCRIPTION>"
 
 ssc = StreamingContext(sc, 1)
-pubsubStream = PubsubUtils.createStream(ssc, SUBSCRIPTION, 5)
+pubsubStream = PubsubUtils.createStream(ssc, SUBSCRIPTION, 5, True)
 pubsubStream.flatMap(lambda x: x).pprint()
 ssc.start()
 ```
